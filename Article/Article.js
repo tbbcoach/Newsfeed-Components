@@ -85,7 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Tim Added this Article',
+    date: 'June 9th, 2020',
+    firstParagraph: 'When in the course of human events it becomes necessary to dissolve the political bands which join us together.',
+    secondParagraph: 'Your printer is now connected to the computer. Please follow the instructions on the screen to align the print head and print a  test page.',
+    thirdParagraph: 'Four score and seven years ago our fathers brought forth on this continent a new nation, conceived and dedicated to the proposition that all men are created equal.'
   }
+
 ];
 
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
@@ -120,32 +128,49 @@ function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagra
   const artSecondParagraph = document.createElement('p');
   const artThirdParagraph = document.createElement('p');
   const expandButton = document.createElement('span');
+  // const button = document.createElement('button');
 
+  articles.appendChild(article);
   article.appendChild(artTitle);
-  article.appendChild(date);
-  article.appendChild(firstParagraph);
-  article.appendChild(secondParagraph);
-  article.appendChild(thirdParagraph);
-  article.appendChild(expandButton);
+  article.appendChild(artdate);
+  article.appendChild(artFirstParagraph);
+  article.appendChild(artSecondParagraph);
+  article.appendChild(artThirdParagraph);
+  article.appendChild(expandButton);  
+
+  // artTitle.appendChild(artdate);
+  // artTitle.appendChild(artFirstParagraph);
+  // artTitle.appendChild(artSecondParagraph);
+  // artTitle.appendChild(artThirdParagraph);
+  // artTitle.appendChild(expandButton);
+  // expandButton.appendChild(button);
+  
 
   article.classList.add('article');
-  date.classList.add('date');
+  artdate.classList.add('date');
   expandButton.classList.add('expandButton');
-
   artTitle.textContent = title;
-  date.textContent = date;
-  firstParagraph.textContent = firstParagraph;
-  secondParagraph.textContent = secondParagraph;
-  thirdParagraph.textContent = thirdParagraph;
+  artdate.textContent = date;
+  artFirstParagraph.textContent = firstParagraph;
+  artSecondParagraph.textContent = secondParagraph;
+  artThirdParagraph.textContent = thirdParagraph;
+  expandButton.textContent = 'Expand';
 
+  
+
+  expandButton.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+  })
 
   return article;
 }
 
 const articles = document.querySelector('.articles');
+console.log('These are the -', articles);
 
 data.forEach((obj) => {
-  console.log(`creating articles - ${obj.title}`);
+  // console.log(`creating articles - ${obj.title}`);
 
-  articles.appendChild(articleMaker(obj.title, obj.date, object.firstParagraph, obj.secondParagraph, obj.thirdParagraph));
+  articles.appendChild(articleMaker(obj.title, obj.date, obj.firstParagraph, obj.secondParagraph, obj.thirdParagraph));
+  console.log(articles);
 });
